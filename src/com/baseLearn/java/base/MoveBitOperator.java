@@ -1,3 +1,5 @@
+package com.baseLearn.java.base;
+
 public class MoveBitOperator {
 	public static void main(String[] args) {
 		// 移位位运算：左移<<;  右移>>;  无符号右移>>>

@@ -1,3 +1,5 @@
+package com.baseLearn.java.base;
+
 public class BitOperator {
 	public static void main(String[] args) {
 		// 位运算：按位与；按位或；按位异或；按位取反

@@ -1,3 +1,5 @@
+package com.baseLearn.java.base;
+
 public class BaseArrayOpe {
 	public static void main(String[] args) {
 		// 创建/声明 数组
