@@ -1,6 +1,8 @@
 package com.baseLearn.java.base;
 
 public class BaseArrayOpe {
+	
+	
 	public static void main(String[] args) {
 		// 创建/声明 数组
 		int[] arr1 = new int[10];
@@ -41,8 +43,12 @@ public class BaseArrayOpe {
 		for(int num : arr1) {
 			System.out.println("for-each 当前num的值是：" + num);
 		}
-		
-		
 	}
 	
+}
+
+class Car {
+	void show() {
+		System.out.println("BaseArrayOpe的 Car show");
+	}
 }

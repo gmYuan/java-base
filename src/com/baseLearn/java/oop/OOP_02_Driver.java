@@ -16,6 +16,11 @@ public class OOP_02_Driver {
 		this.sex = sex;
 	}
 	
+	
+	void show() {
+		System.out.println("OOP_02_Driver的show方法被调用了");
+	}
+	
 	public static void main(String[] args) {
 		OOP_02_Driver driver1 = new OOP_02_Driver();
 		System.out.println("司机1的名字是：" + driver1.name);
@@ -29,6 +34,5 @@ public class OOP_02_Driver {
 		System.out.println("司机2的性别是：" + driver2.sex);
 		
 	}
-	
-
 }
+
