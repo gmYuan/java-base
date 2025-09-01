@@ -12,9 +12,9 @@ public class GenericDemo<T> {
 
 	public void doSomething(Object element) {
 		// 类型擦除1： 无法对泛型进行实例判断
-//		if (element instanceof T) {
-//			System.out.println("element is instanceof T");
-//		}
+    //		if (element instanceof T) {
+    //			System.out.println("element is instanceof T");
+    //		}
 	}
 
 
