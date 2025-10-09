@@ -19,5 +19,20 @@ public class CollectionSortDemo {
 		// 排序后
 		System.out.println("排序后：" + list1);
 
+		// 例2
+		System.out.println("-------Student---------");
+		List<Student> list2 = new ArrayList<>();
+		list2.add(new Student("an1", 45, 78));
+		list2.add(new Student("gn2", 19, 94));
+		list2.add(new Student("dn3", 22, 23));
+		list2.add(new Student("cn4", 20, 67));
+		list2.add(new Student("an5", 22, 94));
+		// 排序前
+		System.out.println("排序前：" + list2);
+		// 排序
+		Collections.sort(list2);
+		// 排序后
+		System.out.println("排序后：" + list2);
+
 	}
 }
