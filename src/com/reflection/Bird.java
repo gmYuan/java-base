@@ -3,10 +3,12 @@ package com.reflection;
 
 import com.reflection.obtainClazzIns.Animal;
 
+import java.io.IOException;
+
 @Markable("Main bird")
 public class Bird extends Animal implements Flying, Comparable<Bird> {
 
-	@Markable("Age of the bird")
+	@Markable("我是Bird类上 private属性age的 注解")
 	private int age;
 
 	protected int size;
@@ -39,11 +41,20 @@ public class Bird extends Animal implements Flying, Comparable<Bird> {
 		this.canEat = canEat;
 	}
 
+	@Markable("我是Bird类 private方法canEat的 注解")
+	private boolean canEat(String food) throws IOException, NoSuchMethodException {
+		if (food == null) {
+			throw new IOException("food is null");
+		}
+		if (food.equals("wu")) {
+			throw new NoSuchMethodException("Bird can not eat wu");
+		}
 
-	private boolean canEat(String food) {
 		return true;
+
 	}
 
+	@Markable("我是Bird类 public方法walk的 注解")
 	public void walk() {
 		System.out.println("Bird is walking");
 	}

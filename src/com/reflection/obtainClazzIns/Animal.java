@@ -1,5 +1,7 @@
 package com.reflection.obtainClazzIns;
 
+import com.reflection.Markable;
+
 public class Animal {
 
 	public String name;
@@ -13,6 +15,7 @@ public class Animal {
 		this.name = name;
 	}
 
+	@Markable("我是Animal类的 makeSound method的 注解")
 	public void makeSound() {
 		System.out.println("Animal内部-- Animal is making sound");
 	}

@@ -2,7 +2,7 @@ package com.reflection;
 
 import java.lang.reflect.Constructor;
 
-public class ReflectInAct {
+public class ReflectInActBase {
 
 	public static void main(String[] args) {
 		// 1 获取类名
