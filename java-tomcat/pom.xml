@@ -1,0 +1,21 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ygm</groupId>
+    <artifactId>java-tomcat-demo1</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>java-tomcat-demo1</name>
+    <description>java-tomcat-demo1</description>
+    <build>
+        <finalName>bank-web</finalName>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+    </dependencies>
+    
+</project>
