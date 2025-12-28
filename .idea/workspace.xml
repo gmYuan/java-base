@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0ab61559-c80c-4098-a060-e60a1764e3a3" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/reflection/Bird.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/reflection/Bird.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,14 +26,15 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/ygm/Documents/learn/java-base/src/Main.java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ygm/Documents/learn/java-base",
+    "onboarding.tips.debug.path": "/Users/ygm/Documents/learn/java-base/src/Main.java"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -52,6 +52,8 @@
       <updated>1760018918792</updated>
       <workItem from="1760018919826" duration="730000" />
       <workItem from="1763879241496" duration="1493000" />
+      <workItem from="1766900909844" duration="22000" />
+      <workItem from="1766900939152" duration="1113000" />
     </task>
     <servers />
   </component>
