@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0"
+         metadata-complete="true">
+
+
+    <servlet>
+        <servlet-name>queryRoomServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.QueryRoomServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>queryRoomServlet</servlet-name>
+        <url-pattern>/queryRoom</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>bookRoomServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.BookRoomServlet</servlet-class>
+         <load-on-startup>13</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bookRoomServlet</servlet-name>
+        <url-pattern>/bookRoom</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
