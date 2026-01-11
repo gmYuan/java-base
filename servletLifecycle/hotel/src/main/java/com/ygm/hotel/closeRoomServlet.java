@@ -4,7 +4,7 @@ package com.ygm.hotel;
 import javax.servlet.*;
 import java.io.IOException;
 
-public class closeRoomServlet implements Servlet {
+public class CloseRoomServlet implements Servlet {
 
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {

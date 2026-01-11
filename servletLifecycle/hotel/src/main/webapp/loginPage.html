@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录页</title>
+</head>
+<body>
+<h1> 登录页-Get 请求 </h1>
+<form action="/hotel/get-login" method="get">
+  <label name="username">用户名：</label>
+  <input type="text" name="username">
+  <br />
+  <label>密码：</label>
+  <input type="password" name="password">
+  <br />
+  <input type="submit" value="提交">
+</form>
+
+  <!--分割线 -->
+  <hr />
+
+  <h1> 登录页-Post 请求 </h1>
+  <form action="/hotel/post-login" method="post">
+    <label name="username">用户名：</label>
+    <input type="text" name="username">
+    <br />
+    <label>密码：</label>
+    <input type="password" name="password">
+    <br />
+    <input type="submit" value="提交">
+  </form>
+
+</body>
+</html>

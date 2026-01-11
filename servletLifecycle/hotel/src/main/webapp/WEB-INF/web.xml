@@ -28,5 +28,24 @@
         <url-pattern>/bookRoom</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>webGetServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.WebGetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>webGetServlet</servlet-name>
+        <url-pattern>/get-login</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>webPostServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.WebPostServlet</servlet-class>
+        <load-on-startup>13</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>webPostServlet</servlet-name>
+        <url-pattern>/post-login</url-pattern>
+    </servlet-mapping>
 
 </web-app>
