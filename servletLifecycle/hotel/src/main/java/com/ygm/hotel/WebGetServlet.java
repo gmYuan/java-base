@@ -40,5 +40,4 @@ public class WebGetServlet extends HttpServlet {
 		res.getWriter().write("Get OK !");
 	}
 
-
 }

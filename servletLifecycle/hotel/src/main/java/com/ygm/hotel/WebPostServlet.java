@@ -1,12 +1,13 @@
 package com.ygm.hotel;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 // V1 使用自己封装的 MyGenericServlet
 //public class WebPostServlet extends MyGenericServlet {
@@ -39,8 +40,29 @@ public class WebPostServlet extends HttpServlet {
 		String pwd = req.getParameter("password");
 		System.out.println("name: " + name);
 		System.out.println("pwd: " + pwd);
+
+		// 获取 json格式的数据
+		// 4.1 从 body 里获取 json格式的 数据
+		BufferedReader streamReader = new BufferedReader(new InputStreamReader(
+				req.getInputStream(), "UTF-8")
+		);
+		StringBuilder builder = new StringBuilder();
+		String line;
+		while ((line = streamReader.readLine()) != null) {
+			builder.append(line);
+		}
+		System.out.println("json是: " + builder.toString());
+		// 4.2 通过 jackson 解析 json数据，转化为 Java类
+		ObjectMapper mapper = new ObjectMapper();
+		WebPostData data = mapper.readValue(builder.toString(), WebPostData.class);
+		System.out.println("解析的 data类是: " + data);
+
+		// 4.3 还可以把 data类 转化为 json
+		String json = mapper.writeValueAsString(data);
+		System.out.println("再转化为json是: " + json);
+
 		// 1.1 响应
-		res.getWriter().write("Post succeed !");
+		 res.getWriter().write("解析Json succeed !");
 	}
 
 

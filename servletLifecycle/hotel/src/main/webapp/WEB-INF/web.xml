@@ -5,7 +5,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0"
-         metadata-complete="true">
+         metadata-complete="false">
 
 
     <servlet>
@@ -37,7 +37,6 @@
         <url-pattern>/get-login</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>webPostServlet</servlet-name>
         <servlet-class>com.ygm.hotel.WebPostServlet</servlet-class>
@@ -46,6 +45,100 @@
     <servlet-mapping>
         <servlet-name>webPostServlet</servlet-name>
         <url-pattern>/post-login</url-pattern>
+    </servlet-mapping>
+
+    <!--cookie-->
+    <servlet>
+        <servlet-name>createCookieServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.cookie.CreateCookieServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createCookieServlet</servlet-name>
+        <url-pattern>/cookie/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>useCookieServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.cookie.UseCookieServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>useCookieServlet</servlet-name>
+        <url-pattern>/cookie/use</url-pattern>
+    </servlet-mapping>
+
+    <!--session-->
+    <servlet>
+        <servlet-name>createSessionServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.session.CreateSessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createSessionServlet</servlet-name>
+        <url-pattern>/session/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>querySessionServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.session.QuerySessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>querySessionServlet</servlet-name>
+        <url-pattern>/session/query</url-pattern>
+    </servlet-mapping>
+
+    <!-- filter -->
+    <filter>
+        <filter-name>myFilter3</filter-name>
+        <filter-class>com.ygm.hotel.filter.MyFilter3</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>myFilter3</filter-name>
+        <url-pattern>/session/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>myFilter2</filter-name>
+        <filter-class>com.ygm.hotel.filter.MyFilter2</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>myFilter2</filter-name>
+        <url-pattern>/session/*</url-pattern>
+    </filter-mapping>
+
+<!--    <filter>-->
+<!--        <filter-name>myFilter1</filter-name>-->
+<!--        <filter-class>com.ygm.hotel.filter.MyFilter1</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>myFilter1</filter-name>-->
+<!--        <url-pattern>/session/*</url-pattern>-->
+<!--    </filter-mapping>-->
+
+    <!--Listener-->
+<!--    <listener>-->
+<!--        <listener-class>com.ygm.hotel.listener.MyCtxListener</listener-class>-->
+<!--    </listener>-->
+
+    <!--onlineCount Listener-->
+    <listener>
+        <listener-class>com.ygm.hotel.listener.MySessionListener</listener-class>
+    </listener>
+
+    <!--onlineCount Servlet-->
+<!--    <servlet>-->
+<!--        <servlet-name>queryOnlineCountServlet</servlet-name>-->
+<!--        <servlet-class>com.ygm.hotel.QueryOnlineCountServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>queryOnlineCountServlet</servlet-name>-->
+<!--        <url-pattern>/queryOnlineCount</url-pattern>-->
+<!--    </servlet-mapping>-->
+    <servlet>
+        <servlet-name>queryOrderServlet</servlet-name>
+        <servlet-class>com.ygm.hotel.session.QueryOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>queryOrderServlet</servlet-name>
+        <url-pattern>/queryOrder</url-pattern>
     </servlet-mapping>
 
 </web-app>
