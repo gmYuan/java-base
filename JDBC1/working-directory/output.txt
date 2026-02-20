@@ -1,0 +1,2 @@
+AAA=123
+Current dir: /Users/jiayin/Documents/learn-day/JDBC1/working-directory
