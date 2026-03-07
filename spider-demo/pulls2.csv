@@ -1,0 +1,11 @@
+number,author,title
+77874,jub0bs,internal/stringslite: use bytealg.MakeNoZero in Clone
+77862,feizaizheli,syscall: replace panic with error return in Accept4 on FreeBSD
+77861,feizaizheli,net: fix goroutine leak in dialPlan9
+77852,soypat,slog: use time.Time.AppendFormat to write value
+77848,feizaizheli,multiple: fix lock management bugs and improve error handling
+77845,feizaizheli,syscall: fix incorrect defer usage in acquireForkLock
+77840,feizaizheli,syscall: fix deadlock in releaseForkLock
+77818,zccold,cmd/go: fix toolchain escape via PATH in covermode
+77793,VladSaiocUber,cmd/compile/internal,internal,runtime: add lightweight probabilistic data race detection
+77778,ansel1,testing: fix construction of the testing artifacts path
