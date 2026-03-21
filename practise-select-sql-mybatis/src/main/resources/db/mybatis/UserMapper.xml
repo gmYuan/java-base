@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ygm.UserMapper">
+    <select id="selectUser" resultType="User">
+        select * from USERS
+    </select>
+
+    <select id="selectUserByIdV1" resultType="User">
+        select * from USERS where name = '${name}'
+    </select>
+
+    <select id="selectUserByIdV2" resultType="User">
+        select * from USERS where id = #{id}
+    </select>
+
+    <select id="findUserLikeName" resultType="User">
+        select * from USERS
+        <if test="name != null">
+            where name like #{name}
+        </if>
+    </select>
+
+    <select id="chooseUser" resultType="User">
+        select * from USERS
+        <choose>
+            <when test="name == 'wangwu' ">
+                where name = 'wangwu'
+            </when>
+            <otherwise>
+                where name = 'zhangsan'
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectIds" resultType="User">
+        select * from USERS
+        where id in
+        <foreach item="item" index="index" collection="ids"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>
+
+
