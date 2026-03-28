@@ -3,6 +3,7 @@ package xdml.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import xdml.anno.Cache;
 import xdml.dao.RankDao;
 import xdml.dao.UserMapper;
 import xdml.entity.RankItem;
@@ -18,7 +19,7 @@ public class RankService {
 	@Autowired
 	private RankDao rankDao;
 
-
+	@Cache
 	public List<RankItem> getRank () {
 		return rankDao.getRank();
 	}

@@ -1,4 +1,11 @@
 /Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/HelloController.java
+/Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/entity/User.java
+/Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/dao/UserMapper.java
 /Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/Application.java
+/Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/CacheAspect.java
 /Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/MyParam.java
+/Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/entity/RankItem.java
+/Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/anno/Cache.java
+/Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/dao/RankDao.java
+/Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/service/RankService.java
 /Users/jiayin/Documents/learn-day/xdml-v1/src/main/java/xdml/IssueController.java
