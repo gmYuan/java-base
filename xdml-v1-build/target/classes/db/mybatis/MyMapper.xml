@@ -9,11 +9,11 @@
         select t.user_id, t.score_sum, u.name as user_name
         from (
             select user_id, sum(score) as score_sum
-            from "MATCH"
+            from `MATCH`
             group by user_id
             order by score_sum desc
         ) t
-        inner join "USER" u on t.user_id = u.id
+        inner join `USER` u on t.user_id = u.id
     </select>
 
     <resultMap id="rankItem" type="xdml.entity.RankItem">

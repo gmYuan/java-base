@@ -50,6 +50,12 @@
             <version>1.4.200</version>
         </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version>
+        </dependency>
+
         <!-- 启动时执行 classpath:db/migration（仅有 flyway-maven-plugin 不会在运行时建表） -->
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -105,12 +111,23 @@
                     </arguments>
                 </configuration>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.flywaydb</groupId>-->
+<!--                <artifactId>flyway-maven-plugin</artifactId>-->
+<!--                <version>6.0.7</version>-->
+<!--                <configuration>-->
+<!--                    <url>jdbc:h2:file:${project.basedir}/target/test</url>-->
+<!--                    <user>root</user>-->
+<!--                    <password>root</password>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.0.7</version>
                 <configuration>
-                    <url>jdbc:h2:file:${project.basedir}/target/test</url>
+                    <url>jdbc:mysql://localhost:3306/match</url>
                     <user>root</user>
                     <password>root</password>
                 </configuration>
