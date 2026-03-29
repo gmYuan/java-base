@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <settings>
+      <!-- Spring Boot 默认用 Logback（走 SLF4J）；无 log4j 依赖时不要写 LOG4J -->
+      <setting name="logImpl" value="SLF4J"/>
+  </settings>
+  <mappers>
+      <mapper resource="db/mybatis/MyMapper.xml"/>
+      <mapper class="xdml.dao.UserMapper"/>
+  </mappers>
+
+</configuration>

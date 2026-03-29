@@ -1,0 +1,39 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>my rank</title>
+</head>
+<body>
+  <h1>排行榜！</h1>
+  <table id="rank-table">
+    <tr>
+      <th>排名</th><th>名字</th><th>分数</th>
+    </tr>
+  </table>
+
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                var json = xhr.responseText;
+                var list = JSON.parse(json);
+                var str = '<tr><th>排名</th><th>名字</th><th>分数</th></tr>' +
+                    '<tr><td>1</td><td>' + list[0].user.name + '</td><td>' + list[0].score + '</td></tr>' +
+                    '<tr><td>2</td><td>' + list[1].user.name + '</td><td>' + list[1].score + '</td></tr>' +
+                    '<tr><td>3</td><td>' + list[2].user.name + '</td><td>' + list[2].score + '</td></tr>';
+
+                document.getElementById('rank-table').innerHTML = str;
+            }
+        }
+    };
+
+    // 每次需要发请求需要做两步:
+    xhr.open("get", "/search", true);
+    xhr.send(null);
+</script>
+
+</body>
+</html>

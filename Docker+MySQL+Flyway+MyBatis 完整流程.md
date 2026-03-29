@@ -1,0 +1,217 @@
+# Docker + MySQL + Flyway + MyBatis 完整流程
+
+## 流程概览
+
+```
+Docker 启动 MySQL
+    ↓
+手动建数据库 match
+    ↓
+配置项目连接信息（application.properties + pom.xml）
+    ↓
+Flyway 自动建表插数据
+    ↓
+MyBatis 写 SQL 查数据
+    ↓
+启动项目访问接口
+```
+
+---
+
+## 第一步：用 Docker 启动 MySQL
+
+```bash
+docker run -d -e MYSQL_ROOT_PASSWORD=your-password -p 3306:3306 mysql
+```
+
+**参数说明：**
+- `-d`：后台运行容器
+- `-e MYSQL_ROOT_PASSWORD=your-password`：设置 root 用户密码
+- `-p 3306:3306`：把容器的 3306 端口映射到本机 3306 端口
+
+**作用：** MySQL 不需要本地安装，直接用 Docker 拉起一个容器实例。Java 项目通过 `localhost:3306` 连接它，和连接本地安装的 MySQL 完全一样。
+
+---
+
+## 第二步：在 IDEA 里连接 MySQL，创建数据库
+
+在 IDEA 右侧 **Database 面板** 新建连接：
+- Driver: `MySQL`
+- Host: `localhost`，Port: `3306`
+- User: `root`，Password: 第一步设置的密码
+- 点 **Test Connection** 验证连通性，再点 **OK**
+
+在 SQL Console 里执行：
+
+```sql
+create database `match`;
+```
+
+> 注意：`match` 是 MySQL 的保留关键字，必须用反引号包裹，否则报语法错误。
+
+**作用：** MySQL 启动后默认没有业务数据库，需要手动创建。Flyway 后续会在这个数据库里建表。
+
+---
+
+## 第三步：配置 application.properties
+
+```properties
+# 数据源配置（MySQL）
+spring.datasource.url=jdbc:mysql://localhost:3306/match
+spring.datasource.username=root
+spring.datasource.password=your-password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# MyBatis 配置文件路径
+mybatis.config-location=classpath:db/mybatis/mybatis-config.xml
+
+# AOP 配置
+spring.aop.proxy-target-class=true
+
+# Redis 配置
+spring.redis.host=localhost
+spring.redis.port=6379
+```
+
+**作用：** 告诉 Spring Boot：
+- 去哪里找数据库（url）
+- 用什么账号密码登录
+- 用哪个 JDBC 驱动
+- MyBatis 配置文件在哪
+
+---
+
+## 第四步：pom.xml 加入 MySQL 驱动依赖
+
+```xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.18</version>
+</dependency>
+```
+
+**作用：** Java 连接 MySQL 必须有 JDBC 驱动。`driver-class-name=com.mysql.cj.jdbc.Driver` 这个类就来自这个 jar 包，没有它项目启动时会报 `ClassNotFoundException`。
+
+---
+
+## 第五步：pom.xml 配置 flyway-maven-plugin
+
+```xml
+<plugin>
+    <groupId>org.flywaydb</groupId>
+    <artifactId>flyway-maven-plugin</artifactId>
+    <version>5.2.4</version>
+    <configuration>
+        <url>jdbc:mysql://localhost:3306/match</url>
+        <user>root</user>
+        <password>your-password</password>
+    </configuration>
+</plugin>
+```
+
+**作用：** 让 Maven 的 Flyway 插件知道要连接哪个数据库来执行迁移脚本。
+
+---
+
+## 第六步：执行 Flyway 建表
+
+```bash
+# 先清空已有的迁移记录，再重新执行
+mvn flyway:clean flyway:migrate
+
+# 或者只执行迁移（第一次）
+mvn flyway:migrate
+```
+
+Flyway 会自动扫描 `src/main/resources/db/migration/` 目录下按版本命名的 SQL 文件，例如：
+
+```
+db/migration/V1_Create_Tables.sql
+```
+
+SQL 文件内容示例：
+
+```sql
+create table user (
+    id bigint primary key,
+    name varchar(50)
+);
+
+create table `match` (
+    id bigint primary key,
+    user_id bigint,
+    score int
+);
+
+insert into user(id, name) values(1, 'Tom');
+insert into user(id, name) values(2, 'Jerry');
+insert into `match`(id, user_id, score) values(1, 1, 10);
+insert into `match`(id, user_id, score) values(2, 1, 20);
+```
+
+**作用：**
+- 不需要手动在数据库里建表
+- SQL 文件纳入版本控制，团队协作时大家执行同一套脚本，数据库结构保持一致
+- `flyway:clean` 会清空数据库重建，`flyway:migrate` 只执行新增的迁移文件
+
+---
+
+## 第七步：编写 MyBatis Mapper
+
+`MyMapper.xml` 示例：
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MyMapper">
+    <select id="getMatches" resultMap="match">
+        select user.id as user_id,
+               user.name as user_name,
+               t.score as score
+        from user
+        join (
+            select user_id, sum(score) as score
+            from `match`
+            group by user_id
+        ) t on user.id = t.user_id
+    </select>
+
+    <resultMap id="match" type="hello.Match">
+        <result property="score" column="score"/>
+        <association property="user" javaType="hello.User">
+            <result property="id" column="user_id"/>
+            <result property="name" column="user_name"/>
+        </association>
+    </resultMap>
+</mapper>
+```
+
+**作用：** MyBatis 是 ORM 框架，负责：
+- 把 SQL 查询结果自动映射成 Java 对象（`resultMap`）
+- 避免手动解析 ResultSet，减少样板代码
+
+---
+
+## 第八步：启动项目
+
+```bash
+mvn compile exec:exec
+```
+
+或者在 IDEA 里直接点击 **Run** 按钮启动 `Application.java`。
+
+**作用：** 编译并运行 Spring Boot 项目，启动后访问 `http://localhost:8080` 就能看到接口返回的数据。
+
+---
+
+## 常见问题
+
+| 问题 | 原因 | 解决 |
+|------|------|------|
+| `create database match` 报语法错误 | `match` 是 MySQL 关键字 | 改成 `` create database `match` `` |
+| 连接被拒绝 `Connection refused` | MySQL 容器没启动 | `docker start <容器名>` |
+| `ClassNotFoundException: com.mysql.cj.jdbc.Driver` | 缺少 MySQL 驱动依赖 | pom.xml 加入 `mysql-connector-java` |
+| Flyway 报表已存在 | 之前已执行过迁移 | 先执行 `mvn flyway:clean` 再 `flyway:migrate` |
